@@ -1,0 +1,242 @@
+@charset "UTF-8";
+* {
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #222;
+  margin: 0;
+}
+
+h1 {
+  font-weight: 100;
+  color: #eee;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.weather {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.weather .weather_box {
+  position: relative;
+  margin: 10px;
+  height: 220px;
+  width: 220px;
+  border: 0.5px solid #eee;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4rem;
+  height: 4rem;
+  margin: -2rem;
+  background-color: #eee;
+}
+
+.cloud {
+  border-radius: 50%;
+  box-shadow: -0.8rem -1rem 0 0.25rem #eee, 0.7rem -1.5rem 0 0.1rem #eee, 2.5rem 0.64rem 0 -0.01rem #eee, -2.5rem 0.64rem 0 -0.01rem #eee;
+}
+.cloud:before {
+  content: "";
+  position: absolute;
+  bottom: -0.65rem;
+  left: -0.5rem;
+  width: 5rem;
+  height: 1rem;
+  background-color: #eee;
+}
+
+.sun {
+  border-radius: 50%;
+  background-color: #ee0;
+  animation: spin 10s infinite linear;
+}
+
+.rays {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  top: -2.25rem;
+  left: 1.8rem;
+  display: block;
+  width: 0.4rem;
+  height: 1.5rem;
+  background: #ee0;
+  border-radius: 1rem;
+  box-shadow: 0 6.875rem #ee0;
+}
+.rays:before, .rays:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0.4rem;
+  height: 1.5rem;
+  border-radius: 1rem;
+  background-color: #ee0;
+  box-shadow: 0 6.875rem #ee0;
+  transform-origin: 0.1rem 4.25rem;
+  transform: translate(-50%, -50%) rotate(60deg);
+}
+.rays:after {
+  transform: translate(-50%, -50%) rotate(120deg);
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.lightning {
+  position: relative;
+  left: -30%;
+  top: 60%;
+  color: #ee0;
+  animation: bring 2s infinite linear;
+}
+.lightning:nth-child(2) {
+  left: 15%;
+  top: 130%;
+  transform: scale(0.5);
+  animation: bring 1.5s infinite linear;
+  opacity: 0.3;
+}
+.lightning:before, .lightning:after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  content: "";
+  border-top: 1.66rem solid transparent;
+  border-right: 1rem solid;
+  border-bottom: 1rem solid;
+  border-left: 0.66rem solid transparent;
+  transform: skew(-10deg);
+}
+.lightning:before {
+  top: 2rem;
+  left: 3rem;
+  border-top: 1rem solid;
+  border-right: 0.66rem solid transparent;
+  border-bottom: 1.66rem solid transparent;
+  border-left: 1rem solid;
+  transform: skew(-10deg);
+}
+
+@keyframes bring {
+  45% , 55% {
+    background-color: #aa0;
+    color: #aa0;
+    opacity: 0.2;
+  }
+  90% {
+    background-color: #ee0;
+    color: #ee0;
+    opacity: 1;
+  }
+}
+.cloud + .sun {
+  z-index: -1;
+  left: 70%;
+  top: 35%;
+}
+
+.when_cloudy_box, .lightning_box, .weather_box, .sun_box {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.when_cloudy_box {
+  top: 10%;
+  left: -6%;
+}
+
+.lightning_box {
+  top: -5%;
+}
+
+.rain {
+  position: relative;
+  left: 40%;
+  top: 90%;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: #099;
+  border-radius: 100% 0 60% 50%/60% 0 100% 50%;
+  box-shadow: -1.8rem 0rem 0 0rem #0aa, -1.2rem 1.5rem 0 -0.2rem #0aa, 0.5rem 1.5rem 0 -0.2rem #0aa;
+  transform: rotate(-20deg);
+  animation: rain 3s linear infinite;
+}
+
+@keyframes rain {
+  0% {
+    background-color: #0aa;
+    box-shadow: -1.8rem 0rem 0 0rem #0aa, -1.2rem 1.5rem 0 -0.2rem #0aa, 0.5rem 1.5rem 0 -0.2rem #077;
+  }
+  25% {
+    background-color: #0aa;
+    box-shadow: -1.8rem 0rem 0 0rem #0aa, -1.2rem 1.5rem 0 -0.2rem #066, 0.5rem 1.5rem 0 -0.2rem #077;
+  }
+  50% {
+    background-color: #055;
+    box-shadow: -1.8rem 0rem 0 0rem #0aa, -1.2rem 1.5rem 0 -0.2rem #066, 0.5rem 1.5rem 0 -0.2rem #0aa;
+  }
+  75% {
+    background-color: #055;
+    box-shadow: -1.8rem 0rem 0 0rem #077, -1.2rem 1.5rem 0 -0.2rem #0aa, 0.5rem 1.5rem 0 -0.2rem #0aa;
+  }
+  100% {
+    background-color: #0aa;
+    box-shadow: -1.8rem 0rem 0 0rem #077, -1.2rem 1.5rem 0 -0.2rem #0aa, 0.5rem 1.5rem 0 -0.2rem #0aa;
+  }
+}
+.snow {
+  position: absolute;
+  top: 50%;
+  left: 20%;
+}
+.snow:before, .snow:after {
+  content: "❄";
+  position: relative;
+  font-weight: bold;
+  font-size: 2rem;
+  top: -0.25rem;
+  color: #446565;
+}
+.snow:after {
+  position: relative;
+  top: 1.5rem;
+  left: -0.25rem;
+  font-weight: bold;
+  font-size: 2.5rem;
+  color: #446565;
+}
+.snow:nth-child(2):before {
+  position: relative;
+  top: 1.8rem;
+  left: -0.75rem;
+  font-weight: bold;
+  font-size: 2.25rem;
+  color: #446565;
+}
+.snow:nth-child(2):after {
+  position: relative;
+  top: 3rem;
+  left: -1.25rem;
+  font-weight: bold;
+  font-size: 2rem;
+  color: #446565;
+}
